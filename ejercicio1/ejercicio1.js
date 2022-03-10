@@ -3,10 +3,15 @@
 class Course{
     constructor({
         name,
-        classes=[]
+        classes=[],
+        isfree = false,
+        lang = 'spanish'
     })
     {this.name=name;
-    this.classes = classes;}
+    this.classes = classes;
+    this.isfree = isfree;
+    this.lang = lang;
+    }
 
     set name(nuevo_nombre){
         if (nuevo_nombre === 'asdf'){
@@ -21,7 +26,8 @@ class Course{
 }
 const curso_programacion = new Course({
     name:'curso de programacion basico',
-    classes: ['curso 1', 'curso2']
+    classes: ['curso 1', 'curso2'],
+    isfree: true,
 })
 class Learning_Paths {
     //parametros
@@ -42,12 +48,13 @@ class Learning_Paths {
     }
 }
 // creacion instancias de Learning_paths
-const escuelaWeb = new Learning_Paths({
+const escuelaWeb = new Course({
     school_name: 'Escuela desarrollo WEB',
     courses: [
         curso_programacion,
         'curso de CSS'
-    ]
+    ],
+    lang:'english'
 });
 const escuelaData = new Learning_Paths({
     school_name: "Escuela de DATA ",
@@ -59,13 +66,7 @@ const escuelaVgs = new Learning_Paths({
     school_name: "Escuela de desarrollo de videojuegos "
 });
 
-class Approved_Courses {
-    constructor({
 
-    }){
-
-    }
-}
 class Student {
     //parametros
     constructor({
@@ -91,15 +92,7 @@ class Student {
     }
 }
 
-//instancias
 
-const carlos = new Student({
-    name:'carlos',
-    email:'carlos@correo.com',
-    twitter: 'carlostwitter',
-    learning_Paths:[escuelaWeb, escuelaVgs],
-
-});
 
 ///////////////////////////////////////////////////
 //Encapsulamiento son dos lineamientos:
@@ -120,4 +113,53 @@ const carlos = new Student({
 ///////////////////////////////////////////////////
 //================================================
 ///////////////////////////////////////////////////
+//
+//Herencias con clases.
+// para poder heredar los atributos y metodos de otras clases, es necesario utilizar la palabra reservada 'EXTENDS' posteriormente la clase
 
+class free_student extends Student{
+    //En la herencia se puede utilizar el mismo constructor que la clase madre con la palabra reservada 'SUPER' y un parametro
+    constructor(props){
+        super(props);
+    }
+    approve_course(new_course){
+        if (new_course.isfree){
+            this.approved_Courses.push(new_course);
+        } else {
+            console.warn('Lo siento, ' + this.name + ', Solo puedes tomar cursos gratis')
+        }
+    }
+}
+
+class basic_student extends Student{
+    //En la herencia se puede utilizar el mismo constructor que la clase madre con la palabra reservada 'SUPER' y un parametro
+    constructor(props){
+        super(props);
+    }
+    approve_course(new_course){
+        if (new_course.lang !== "english"){
+            this.approved_Courses.push(new_course);
+        } else {
+            console.warn('Lo siento, ' + this.name + ', no puedes tomar cursos en ingles')
+        }
+    }
+}
+
+
+//instancias
+
+const carlos = new free_student({
+    name:'carlos',
+    email:'carlos@correo.com',
+    twitter: 'carlostwitter',
+    learning_Paths:[escuelaWeb, escuelaVgs],
+
+});
+
+const maria = new basic_student({
+    name:'maria',
+    email:'maria@correo.com',
+    twitter: 'mariatwittersdfsdxddaf',
+    learning_Paths:[],
+
+});

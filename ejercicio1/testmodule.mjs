@@ -10,5 +10,5 @@ const clase_prueba = new platzi_video({
     video_id:'ID video'
 })
 
-clase_prueba.reproducir();
-clase_prueba.pausar();
+//  clase_prueba.reproducir();
+// clase_prueba.pausar();
