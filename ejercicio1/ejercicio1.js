@@ -1,3 +1,25 @@
+// El poliformismo es poder modificar o anular comportamientos de las herencias de las clases (metodos y atributos). es decir, sobreescribirlos.
+// Ejemplo del poliformismo.
+class Comment {
+    constructor({
+        content,
+        student_name,
+        student_role = 'Estudiante',
+
+    }){
+        this.content = content;
+        this.student_name = student_name;
+        this.student_role =student_role;
+        this.like = 0; //Tambien se pueden crear nuevos atributos sin necesidad de tenerlo en el constructor
+    }
+    publicar(){
+        console.log(this.student_name + ' ('+ this.student_role + ')' );
+        console.log(this.like + ' likes');
+        console.log(this.content);
+    }
+}
+
+
 //Abstraccion es crear las clases necesarias para el uso de tu programacion
 
 class Course{
@@ -90,6 +112,18 @@ class Student {
         this.approved_Courses=approved_Courses;
         this.learning_Paths =learning_Paths;
     }
+
+
+    //Agregar un metodo para el ejemplo de poliformismo
+    publicar_Comentario(comment_Content){
+        //Creamos la instancia del objeto
+        const comentario =new Comment({
+            content: comment_Content,
+            student_name: this.name,
+        })
+        //acá se usa el metodo de publicar de la nueva instancia Comment
+        comentario.publicar();
+    }
 }
 
 
@@ -145,6 +179,31 @@ class basic_student extends Student{
     }
 }
 
+class teacher_student extends Student{
+    //En la herencia se puede utilizar el mismo constructor que la clase madre con la palabra reservada 'SUPER' y un parametro
+    constructor(props){
+        super(props);
+    }
+    approve_course(new_course){
+        if (new_course.lang !== "english"){
+            this.approved_Courses.push(new_course);
+        } else {
+            console.warn('Lo siento, ' + this.name + ', no puedes tomar cursos en ingles')
+        }
+    }
+
+    //Ejemplo de poliformismo, se va cambiar/sobreescribir el metodo (publicar_Comentario) de la clase STUDENT con otros parametros
+    publicar_Comentario(comment_Content){
+        //Creamos la instancia del objeto
+        const comentario =new Comment({
+            content: comment_Content,
+            student_name: this.name,
+            student_role: 'Profesor',
+        })
+        //acá se usa el metodo de publicar de la nueva instancia Comment
+        comentario.publicar();
+    }
+}
 
 //instancias
 
@@ -160,6 +219,15 @@ const maria = new basic_student({
     name:'maria',
     email:'maria@correo.com',
     twitter: 'mariatwittersdfsdxddaf',
+    learning_Paths:[],
+
+});
+
+//ejemplo de objeto para poliformismo
+const freddy = new teacher_student({
+    name:'freddy',
+    email:'freddy@correo.com',
+    twitter: 'freddy@twitter fredier',
     learning_Paths:[],
 
 });

@@ -1,11 +1,14 @@
 # poo_javascript
-Curso basico programacion orientada objetos dcon JavaScript
+Curso basico programacion orientada objetos con JavaScript
 
-Programacion orientada a objetos.
+* Programacion orientada a objetos: Resuelve los problemas como el ORDEN, es decir cuando todos los elementos estan relacionados entre si en forma de OBJETOS
+(Atributos y metodos)
 
-* Paradigmas, son formas que se pueden seguir para programar las aplicaciones. y existen varios de estos estructurados, orientados a objetos y paradigmas funcionales.
+* Paradigmas, son formas o caminos que se pueden seguir para programar las aplicaciones. y existen varios de estos estructurados, orientados a objetos y paradigmas funcionales.
 estas se aplican dependiendo del problema/caso especifico que sea necesario, pero se pueden combinar entre ellas dependiendo la felxibilidad de interactuar entre estos
 por medio de las tecnolgías existentes.
+
+existen 3 tipos de paradigmas: Estructurado, POO, Funcional.
 
 En este curso se va enfocar en el Paradigma Orientado a Objetos con JS.
 
